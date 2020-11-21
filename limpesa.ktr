@@ -504,17 +504,9 @@
     <single_statement>N</single_statement>
     <replace_variables>N</replace_variables>
     <quoteString>N</quoteString>
-    <sql>truncate fat_vendas CASCADE;
-truncate dim_produto CASCADE;
-truncate dim_fatura CASCADE;
-truncate dim_forma_pagamento CASCADE;
-truncate dim_loja CASCADE;
-truncate dim_tipo_pagamento CASCADE; 
-
-
-INSERT INTO public.dim_fatura(
-	dky_fatura, cod_fatura, num_nf, cod_tipo_operacao, tipo_operacao, status_fatura, bairro_entrega, cidade_entrega, estado_entrega)
-	VALUES (-1, '-1', 'N/I', 'N/I', 'N/I', 'N/I', 'N/I', 'N/I', null);
+    <sql>INSERT INTO public.dim_fatura(
+	dky_fatura, cod_fatura, cod_loja, num_nf, cod_tipo_operacao, tipo_operacao, status_fatura, bairro_entrega, cidade_entrega, estado_entrega)
+	VALUES (-1, '-1', '-1', 'N/I', 'N/I', 'N/I', 'N/I', 'N/I', 'N/I', null);
 	
 	
 INSERT INTO public.dim_forma_pagamento(
@@ -524,7 +516,7 @@ INSERT INTO public.dim_forma_pagamento(
 
 INSERT INTO public.dim_loja(
 	dky_loja, cod_empresa, nome_empresa, cod_loja, nome_loja, cnpj_loja, cep_loja, bairro_loja, cidade_loja, estado_loja)
-	VALUES (-1, '-1', 'N/I', '-1', 'N/I', 'N/I', 'N/I', 'N/I', 'N/I', null);
+	VALUES (-1, 'N/I', 'N/I', '-1', 'N/I', 'N/I', 'N/I', 'N/I', 'N/I', null);
 	
 	
 INSERT INTO public.dim_pessoa(
@@ -556,8 +548,8 @@ INSERT INTO public.dim_tipo_pagamento(
       </output>
     </remotesteps>
     <GUI>
-      <xloc>144</xloc>
-      <yloc>48</yloc>
+      <xloc>128</xloc>
+      <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
