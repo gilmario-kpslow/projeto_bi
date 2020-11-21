@@ -15,7 +15,7 @@ CREATE DATABASE "BI_ERPDemo"
 
 create table "BI_ERPDemo".public.dim_loja(
 	dky_loja bigserial not null,
-	cod_empresa varchar(2) not null,
+	cod_empresa varchar(5) not null,
 	nome_empresa varchar(60),
 	cod_loja varchar(5) not null,
 	nome_loja varchar(30),
