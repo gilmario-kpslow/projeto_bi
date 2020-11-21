@@ -1797,9 +1797,9 @@
 		 COALESCE(tippag.tpg_tippag,'-1') as cod_tipo_pagamento,
 	     f.fat_datfat as data,
 	     COALESCE(f.fat_numfat,'-1') as cod_fatura,
-	     sum(iff.ift_valitm) valor,
+		 sum(iff.ift_valor*iff.ift_quantfatc) valor,
 	     sum(iff.ift_custitm * iff.ift_quantfatc) custo,
-	     (sum(iff.ift_valitm) - sum(iff.ift_custitm * iff.ift_quantfatc)) lucro,
+	     (sum(iff.ift_valor*iff.ift_quantfatc) - sum(iff.ift_custitm * iff.ift_quantfatc)) lucro,
 		 SUM(iff.ift_quantfatc) as qtd_produto
 	from fatura as f
 		left join loja as l on l.loj_codloj = f.fat_loja 
@@ -1809,7 +1809,9 @@
 		left join pessoa as cli on cli.pes_codpes = f.fat_codpes 
 		left join tab_forma_pag as forpag on forpag.fpg_forpag = f.fat_forpag
 		left join tab_tipo_pag as tippag on tippag.tpg_tippag = f.fat_tippag
-	where f.fat_tipped = 'V'
+		inner join tab_operfiscal t on (t.tof_codopf = f.fat_codope)
+	where t.tof_tipdoc = 'V'
+	AND f.fat_sitfat = 'N'
 	group by 
 	     l.loj_codloj ,
 		 cli.pes_codpes,
@@ -1846,7 +1848,7 @@
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
         <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <date_format_timezone>America/Fortaleza</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
@@ -1869,7 +1871,7 @@
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
         <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <date_format_timezone>America/Fortaleza</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
@@ -1892,7 +1894,7 @@
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
         <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <date_format_timezone>America/Fortaleza</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
@@ -1915,7 +1917,7 @@
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
         <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <date_format_timezone>America/Fortaleza</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
@@ -1938,7 +1940,7 @@
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
         <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <date_format_timezone>America/Fortaleza</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
@@ -1961,7 +1963,7 @@
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
         <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <date_format_timezone>America/Fortaleza</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
@@ -1984,7 +1986,7 @@
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
         <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <date_format_timezone>America/Fortaleza</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
@@ -2007,7 +2009,7 @@
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
         <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <date_format_timezone>America/Fortaleza</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
@@ -2030,7 +2032,7 @@
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
         <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <date_format_timezone>America/Fortaleza</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
@@ -2053,7 +2055,7 @@
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
         <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <date_format_timezone>America/Fortaleza</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
@@ -2076,7 +2078,7 @@
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
         <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <date_format_timezone>America/Fortaleza</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
@@ -2099,7 +2101,7 @@
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
         <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <date_format_timezone>America/Fortaleza</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
     </row-meta>
